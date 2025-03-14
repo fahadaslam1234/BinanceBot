@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Strategy Logs</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e2f;
+        color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+        color: #00d4ff;
+    }
+    .main-card {
+        background: #28293e;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        max-width: 800px;
+        margin: 20px auto;
+        overflow-y: auto;
+        height: 400px;
+    }
+    .main-card div{
+        color: white;
+        background-color: #1e1e2f;
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    </style>
+
+    <script>
+        const eventSource = new EventSource("/logs");
+        eventSource.onmessage = function(event) {
+            const logDiv = document.getElementById("log");
+            const newLog = document.createElement("div");
+            newLog.textContent = event.data;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            logDiv.appendChild(newLog);
+        };
+    </script>
+</head>
+<body>
+    <h1>Trading Strategy Logs</h1>
+    <div id="log" class="main-card">
+        <!-- Logs will appear here -->
+    </div>
+</body>
+</html>

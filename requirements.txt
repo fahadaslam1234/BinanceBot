@@ -1,0 +1,6 @@
+pandas
+ta
+binance
+python-dotenv
+flask
+python-binance
